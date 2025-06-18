@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from pydantic import BaseModel
 import openai
 import os
 from dotenv import load_dotenv
@@ -27,3 +28,14 @@ def frase_random():
 
     frase = response.choices[0].message.content
     return {"frase": frase}
+
+class Historial(BaseModel):
+    userId: str
+    emocion: str
+    timestamp: str
+
+@app.post("/guardar")
+async def guardar(historial: Historial):
+    with open("historial.txt","a") as f:
+        f.write(f"{historial.userId} - {historial.emocion} - {historial.timestamp}\n")
+        return {"mensaje": "Historial guardado"}

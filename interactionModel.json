@@ -1,0 +1,62 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "charlas con jove",
+      "intents": [
+        {
+          "name": "EstadoEmocional",
+          "slots": [
+            {
+              "name": "emocion",
+              "type": "EmocionType"
+            }
+          ],
+          "samples": [
+            "me siento {emocion}",
+            "hoy estoy {emocion}",
+            "me noto {emocion}",
+            "estoy muy {emocion}"
+          ]
+        },
+        {
+          "name": "AmigoInternoIntent",
+          "samples": [
+            "quiero hablar con mi amigo interno",
+            "háblame como un amigo",
+            "necesito un consejo de amigo",
+            "quiero conversar contigo"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "ayuda",
+            "necesito ayuda",
+            "¿qué puedo decir?"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "para",
+            "termina",
+            "adiós"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "EmocionType",
+          "values": [
+            { "name": { "value": "triste" } },
+            { "name": { "value": "feliz" } },
+            { "name": { "value": "ansioso" } },
+            { "name": { "value": "enojado" } },
+            { "name": { "value": "deprimido" } },
+            { "name": { "value": "esperanzado" } }
+          ]
+        }
+      ]
+    }
+  }
+}
