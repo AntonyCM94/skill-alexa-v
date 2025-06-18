@@ -13,10 +13,17 @@ def root():
     return {"mensaje": "¡Hola desde tu skill Alexa con cerebro GPT!"}
 
 @app.get("/frase")
-def generar_frase():
-    respuesta = openai.ChatCompletion.create(
+def frase_random():
+    prompt = "Dame una frase breve, motivadora y divertida en español, como si viniera de un amigo filósofo con sentido del humor."
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": "Dame una frase corta, sabia y divertida"}]
+        message=[
+            {"role": "system", "content": "Eres un sabio que habla en español con tono cercano y humano."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.8,
+        max_tokens=100
     )
-    texto = respuesta.choices[0].message.content.strip()
-    return {"frase": texto}
+
+    frase = response.choices[0].message.content
+    return {"frase": frase}
