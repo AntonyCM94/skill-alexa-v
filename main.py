@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 import openai
 import os
-
 open.api_key = os.getenv("OPEN_API_KEY")
 
 app = FastAPI()
