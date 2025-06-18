@@ -3,6 +3,9 @@ import openai
 import os
 open.api_key = os.getenv("OPEN_API_KEY")
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = FastAPI()
 
 @app.get("/frase")
