@@ -16,19 +16,22 @@ def root():
 @app.get("/frase")
 def frase_random():
     prompt = "Dame una frase breve, motivadora y divertida en español, como si viniera de un amigo filósofo con sentido del humor."
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "Eres un sabio que habla en español con tono cercano y humano."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.8,
-        max_tokens=100
-    )
-
-    frase = response.choices[0].message.content
-    return {"mensaje": frase}
-
+    try: 
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Eres un sabio que habla en español con tono cercano y humano."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.8,
+            max_tokens=100
+        )
+        frase = response['choices'][0]['message']['content']
+        return {"mensaje": frase}
+    
+    except Exception as e:
+        print(f"Error llamando a OpenAI: {e}")
+        return {"mensaje": "ups, no pude pensar en nada ahora mismo :("}
 class Historial(BaseModel):
     userId: str
     emocion: str
