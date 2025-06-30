@@ -18,7 +18,7 @@ def frase_random():
     prompt = "Dame una frase breve, motivadora y divertida en español, como si viniera de un amigo filósofo con sentido del humor."
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        message=[
+        messages=[
             {"role": "system", "content": "Eres un sabio que habla en español con tono cercano y humano."},
             {"role": "user", "content": prompt}
         ],
@@ -27,7 +27,7 @@ def frase_random():
     )
 
     frase = response.choices[0].message.content
-    return {"frase": frase}
+    return {"mensaje": frase}
 
 class Historial(BaseModel):
     userId: str
